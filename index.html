@@ -7,8 +7,10 @@
     <link rel="stylesheet" href="styles/normalize.css">
     <link rel="stylesheet" href="styles/main.css">
     <script>
-        function setCookie(cname,cvalue) {
-            var expires = "expires=Thu, 01 Jan 1970 00:00:00 UTC";
+        function setCookie(cname,cvalue,exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays*24*60*60*1000));
+            var expires = "expires=" + d.toUTCString();
             document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
         }
 
@@ -43,7 +45,7 @@
 </head>
 <body onload="checkCookie()">
     <header>
-        <button type="button" onclick="document.getElementById('cookies').innerHTML = getCookie()">Click me to display the input saved for the cookie.</button>
+        <button type="button" onclick="document.getElementById('cookies').innerHTML = checkCookie()">Click me to display the input saved for the cookie.</button>
         <h1 id="cookies"></h1>
     </header>
     <main>
